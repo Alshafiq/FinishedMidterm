@@ -27,6 +27,7 @@ public class View extends JFrame{
         lnameTF = new JTextField(10);
         citeTF = new JTextField(10);
         
+        THandler = new TextHandler();
         fnameTF.addKeyListener(THandler);
         lnameTF.addKeyListener(THandler);
         citeTF.setEditable(false);
@@ -43,7 +44,6 @@ public class View extends JFrame{
         acmRB.setMnemonic(KeyEvent.VK_B);
         acmRB.setActionCommand("ACM");
         acmRB.setSelected(false);
-        THandler = new TextHandler();
         acmRB.addActionListener(RHandler);
 
         setTitle("Citation Generator");
@@ -77,7 +77,7 @@ public class View extends JFrame{
     				if(ieeeRB.isSelected())
     				{
     					acmRB.setSelected(false);
-    					citeTF.setText(cite.getFirstNameAbbrev() + "" + cite.getLastName());
+    					citeTF.setText(cite.getFirstNameAbbrev() + " " + cite.getLastName());
     				}
     				break;
     							
@@ -85,7 +85,7 @@ public class View extends JFrame{
     				if(acmRB.isSelected())
     				{
     					ieeeRB.setSelected(false);
-    					citeTF.setText(cite.getFirstName() + "" + cite.getLastNameWPeriod());
+    					citeTF.setText(cite.getFirstName() + " " + cite.getLastNameWPeriod());
     				}
     				break;
     							
@@ -99,20 +99,38 @@ public class View extends JFrame{
 
     	@Override
     	public void keyPressed(KeyEvent arg0) {
-    		// TODO Auto-generated method stub
-    		System.out.println(arg0.getKeyCode());
-    	}
+    		
+    		cite.setFirstName(fnameTF.getText());
+			cite.setLastName(lnameTF.getText());
+			
+    		int keyCode = arg0.getKeyCode();
+            String keyText = KeyEvent.getKeyText(keyCode);
+            
+            switch(keyText)
+            {
+            	case "Enter" :
+            		if(ieeeRB.isSelected())
+    				{
+    					acmRB.setSelected(false);
+    					citeTF.setText(cite.getFirstNameAbbrev() + " " + cite.getLastName());
+    				}
+            		
+            		else if(acmRB.isSelected())
+    				{
+    					ieeeRB.setSelected(false);
+    					citeTF.setText(cite.getFirstName() + " " + cite.getLastNameWPeriod());
+    				}
+            }
+        }
 
     	@Override
     	public void keyReleased(KeyEvent arg0) {
-    		// TODO Auto-generated method stub
-    		System.out.println(arg0.getKeyCode());
+    		// TODO Auto-generated method stub	
     	}
 
     	@Override
     	public void keyTyped(KeyEvent arg0) {
-    		// TODO Auto-generated method stub
-    		
+    		// TODO Auto-generated method stub	
     	}
 
 
