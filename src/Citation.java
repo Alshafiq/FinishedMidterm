@@ -13,6 +13,10 @@ public class Citation {
 	public String getFirstName() {
 		return firstName;
 	}
+	
+	public String getFirstNameAbbrev() {
+		return firstName.charAt(0) + ".";
+	}
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
@@ -20,6 +24,10 @@ public class Citation {
 
 	public String getLastName() {
 		return lastName;
+	}
+	
+	public String getLastNameWPeriod() {
+		return (lastName + ".");
 	}
 
 	public void setLastName(String lastName) {
