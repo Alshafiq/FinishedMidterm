@@ -4,7 +4,7 @@ import java.awt.event.*;
 
 public class View extends JFrame{
 
-	private static final int WIDTH = 400;
+    private static final int WIDTH = 400;
     private static final int HEIGHT = 300;
     private JLabel fnameL, lnameL;
     private JTextField fnameTF, lnameTF, citeTF;
